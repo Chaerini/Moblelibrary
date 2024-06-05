@@ -1,0 +1,53 @@
+.navbar {
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    height: 100px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    margin-left: 80px;
+}
+
+.nav-logo {
+    width: 150px;
+}
+
+.nav-logo img {
+    width: 130px;
+}
+
+.nav-menu-list {
+    padding: 14px 25px;
+    font-size: 17px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-button {
+    margin-right: 200px;
+}
+
+.nav-admin {
+    border: 1px solid #00a887;
+    border-radius: 50px;
+    background-color: white;
+    margin-right: 7px;
+    padding: 3px 5px;
+}
+
+.nav-button span {
+    margin-right: 20px;
+}
+.nav-login {
+    text-decoration: none;
+    color: inherit;
+}

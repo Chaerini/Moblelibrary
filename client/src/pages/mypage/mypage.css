@@ -1,0 +1,42 @@
+.mypage {
+    display: flex;
+    flex-direction: row;
+    min-height: calc(100vh - 100px);
+    margin-bottom: 100px;
+}
+
+.mypage-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.mypage-left {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.mypage-label {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.mypage-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.mypage-input {
+    margin-bottom: 7px;
+    border: none;
+    border-radius: 10px;
+    background-color: #eee;
+    width: 250px;
+    height: 30px;
+}

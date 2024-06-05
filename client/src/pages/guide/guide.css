@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.greetings {
+    display: flex;
+    flex-direction: row;
+    min-height: calc(100vh - 100px);
+    margin-bottom: 100px;
+}
+
+.greetings-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 7px;
+}
+
+.greetings-title h3 {
+    margin-left: 10px;   
+}
+
+.greetings-content {
+    margin-left: 25px;
+    margin-bottom: 30px;
+}
+
+.greetings-content li::marker {
+    color: #00a887;
+}
+
+.greetings-icon {
+    color: #00a887;
+}

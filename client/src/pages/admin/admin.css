@@ -1,0 +1,153 @@
+.admin {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 100vh;
+    min-height: 100vh;
+}
+
+.admin-left {
+    width: 200px;
+    background-color: #222;
+    min-height: 100vh;
+}
+
+.admin-menu-logo {
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 10px 10px 10px 0px;
+    border-bottom: 0.5px solid #666;
+    width: 180px;
+}
+
+.admin-menu-a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    margin: 0px;
+    padding: 10px;
+    /* border-bottom    : 1px solid #777; */
+    font-size: 14px;
+    color: #888;
+}
+
+.admin-icon {
+    color: #888;
+    margin: 0px 5px;
+}
+
+.admin-center {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-center-top {
+    width: calc(100vw - 200px);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 64px;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-exit-icon {
+    color: #888;
+    margin: 0px 5px;
+    padding: 14px;
+    font-size: 20px;
+}
+
+.admin-search-bg {
+    position: relative;
+    background-color: #ddd;
+}
+
+.admin-search-input {
+    position: relative;
+    margin: 30px 50px 30px 50px;
+    background-color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    width: 1200px;
+}
+
+.admin-input {
+    position: relative;
+    width: 95%;
+    height: 40px;
+    margin-left: 10px;
+    padding-left: 20px;
+    font-size: 15px;
+}
+
+.admin-input-button {
+    position: absolute;
+    right: 25px;
+    width: 80px;
+    height: 43.7px;
+    background-color: #3e4040;
+}
+
+.admin-input-button img {
+    width: 25px;
+    height: 25px;
+}
+
+.admin-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: calc(100vh - (65px + 133px));
+    background-color: #ddd;
+}
+
+.admin-info-bg {
+    background-color: white;
+    margin: 10px 0px 20px 50px;
+    border-radius: 10px;
+    width: 1240px;
+    box-shadow: 0 0 3px #999;
+}
+
+.admin-table {
+    width: 100%;
+    border-spacing: 0px;
+}
+
+.table-title {
+    background-color: #eee;
+    height: 50px;
+    text-align: left;
+}
+
+.table-title-th {
+    padding-left: 10px;
+}
+
+.table-content {
+    height: 50px;
+}
+
+.content-title {
+    padding-left: 10px;
+}
+
+.admin-add {
+    position: fixed;
+    border-radius: 50%;
+    padding: 10px;
+    bottom: 70px;
+    right: 70px;
+}
+
+.admin-add-icon {
+    background-color: #555;
+    height: 35px;
+    width: 35px;
+    color: white;
+    padding: 15px;
+    border-radius: 100%;
+    position: fixed;
+}
