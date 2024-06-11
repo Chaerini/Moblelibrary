@@ -8,8 +8,11 @@ import {
     searchTitle,
     getLank,
     getArrival,
+    uploadImage,
+    updateImage
 } from '../controllers/book.js';
 import { verifyAdmin } from '../utils/verifyToken.js';
+import upload from '../utils/upload.js';
 
 const router = express.Router();
 
@@ -30,6 +33,12 @@ router.get('/best', getLank);
 
 // 도착 날짜 최신순으로 정렬 GET
 router.get('/arrival', getArrival);
+
+// 이미지 업로드
+router.post('/upload', upload.single('image'), uploadImage);
+
+// 이미지 업데이트
+router.put('/update/:id', upload.single('image'), updateImage);
 
 // GET
 router.get('/:id', getBook);

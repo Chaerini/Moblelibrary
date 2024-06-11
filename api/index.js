@@ -52,7 +52,7 @@ app.use(cookieParser())
 // ‘http://localhost:3000' 접근을 CORS 정책을 적용하여 자격 증명을 포함한 요청도 허용하도록 설정
 // 이는 주로 프론트엔드 애플리케이션이 백엔드 서버에 안전하게 접근할 수 있도록 도와준다
 const corsOptions = {
-    origin: 'http://localhost:3000', // 클라이언트 url
+    origin: ['http://localhost:3000', 'http://3.34.138.161:3000', 'http://moblelibrary.site:3000'], // 클라이언트 url
     credentials: true, // 자격 증명 허용
 }
 app.use(cors(corsOptions))

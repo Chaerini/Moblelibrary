@@ -98,7 +98,7 @@ const Lastloan = () => {
                                         <th>
                                             <div className='mystudy-info'>
                                                 <div className='mystudy-info-left'>
-                                                    <img src={bookData[index].image}></img>
+                                                    <img src={bookData[index]?.image}></img>
                                                 </div>
                                                 <div className='mystudy-info-right'>
                                                     <p>{bookData[index]?.title}</p>

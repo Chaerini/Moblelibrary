@@ -97,9 +97,12 @@ export const getArrival = async (req, res, next) => {
     }
 }
 
+
+// 책 이미지 변경
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-export const updateProfileImage = async (req, res, next) => {
+
+export const updateImage = async (req, res, next) => {
     try {
         const bookId = req.params.id;
         const imgPath = req.file.path.replace(/\\/g, "/");
@@ -130,8 +133,13 @@ export const updateProfileImage = async (req, res, next) => {
 
 export const uploadImage = async (req, res, next) => {
     try {
-        const image = `/uploads/${req.file.filename}`;
+        // 이미지 불러오기
+        const filename = req.file.filename;
+        if(!filename) {
+            return res.status(400).json({ message: '이미지가 전송되지 않았습니다.' });
+        }
+        res.status(200).json({ image: `/uploads/${filename}`});
     } catch (err) {
         next(err);
-    }
+    } 
 }

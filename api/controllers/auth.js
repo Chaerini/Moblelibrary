@@ -55,6 +55,7 @@ export const login = async (req, res, next) => {
                 httpOnly: true, // 옵션 httpOnly: ture로 자바스크립트에서 쿠키 접근 제한
                 sameSite: "strict",
                 path: '/',
+                // domain: 'moblelibrary.site',
             })
             .status(200) // 응답코드 200으로 설정
             .json({ details: { ...otherDetails } }); // 응답 json 형태, otherDetails와 isAdmin을 details에 포함

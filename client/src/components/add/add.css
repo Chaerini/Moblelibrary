@@ -1,3 +1,11 @@
 .bu-img-bg {
     border: 1px solid #eee;
 }
+
+.bu-img-bg p {
+    display: flex;
+    width: 230px;
+    height: 300px;
+    align-items: center;
+    justify-content: center;
+}

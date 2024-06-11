@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const BookAdd = ({ setOpen, bookid }) => {
+const BookAdd = ({ setOpen }) => {
     const [selectedImage, setSelectedImage] = useState();
     const [bookData, setBookData] = useState({
         title: '',
@@ -28,6 +28,9 @@ const BookAdd = ({ setOpen, bookid }) => {
         image: '',
     });
     const apiUrl = process.env.REACT_APP_API_URL;
+    const imageUrl = process.env.REACT_APP_API_IMAGE_URL;
+    console.log(apiUrl);
+    console.log("imageUrl: ", imageUrl);
 
     const navigate = useNavigate();
 
@@ -53,9 +56,9 @@ const BookAdd = ({ setOpen, bookid }) => {
         const { id, value } = e.target;
         setBookData((prev) => ({
             ...prev,
-            [id] : value
+            [id]: value
         }));
-        console.log(id , ": ", value);
+        console.log(id, ": ", value);
         console.log(bookData);
     }
 
@@ -66,17 +69,13 @@ const BookAdd = ({ setOpen, bookid }) => {
         formData.append('image', file);
 
         try {
-            const res = await axios.post(`${apiUrl}/upload`, formData, {
+            const res = await axios.post(`${apiUrl}/books/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            });
-
-            setBookData((prev) => ({
-                ...prev,
-                image: res.data.imageUrl // 서버에서 반환된 이미지 URL
-            }));
-            setSelectedImage(res.data.imageUrl); // 이미지 미리보기
+            }, { withCredentials: true });
+            setBookData((prev) => ({ ...prev, image: res.data.image }));
+            setSelectedImage(res.data.image); // 이미지 미리보기
         } catch (err) {
             console.log(err);
             alert('이미지 업로드에 실패했습니다.');
@@ -95,7 +94,18 @@ const BookAdd = ({ setOpen, bookid }) => {
                 ) : (
                     <div className="bu-center">
                         <div className='bu-left'>
-                            <label>책이미지</label><div className="bu-img-bg"><img src={bookData.image}></img></div><div><input type="file" id="image"></input></div>
+                            <label>책이미지</label>
+                            {selectedImage ? (
+                                <div>
+                                    <img src={`${process.env.REACT_APP_API_IMAGE_URL}${selectedImage}`}></img>
+                                </div>
+                            ) : (
+                                <div className="bu-img-bg">
+                                    <p>책 표지를 등록해주세요.</p>
+                                </div>
+                            )}
+
+                            <div><input type="file" id="image" onChange={handleImageUpload}></input></div>
                         </div>
                         <div className='bu-right'>
                             <div><label for='title'>제목</label><input type="text" id="title" onChange={handleChange}></input></div>

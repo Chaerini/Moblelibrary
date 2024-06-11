@@ -24,7 +24,9 @@ const BookUpdate = ({ setOpen, bookid }) => {
         availability: true,
         page: '',
         description: '',
+        image: '',
     });
+    const [bookImage, setBookImage] = useState();
     const apiUrl = process.env.REACT_APP_API_URL;
 
     const navigate = useNavigate();
@@ -40,7 +42,7 @@ const BookUpdate = ({ setOpen, bookid }) => {
             try {
                 const res = await axios.get(`${apiUrl}/books/${bookid}`, { withCredentials: true });
                 setBookData(res.data);
-                console.log(res.data);
+                setBookImage(res.data.image);
             } catch (err) {
                 alert("책정보를 가져오는데에 실패했습니다.");
                 console.log(err);
@@ -53,10 +55,30 @@ const BookUpdate = ({ setOpen, bookid }) => {
     const saveClick = async () => {
         try {
             const update = await axios.put(`${apiUrl}/books/${bookid}`, bookData, { withCredentials: true });
-            navigate('/book');
             setOpen(false);
+            navigate('/book');
         } catch (err) {
             alert("업데이트하는데 실패했습니다.")
+            console.log(err);
+        }
+    }
+
+    // 이미지 바꾸면 바꾼 이미지 저장
+    const ImageChange = async (e) => {
+        const file = e.target.files[0];
+        const formData = new FormData();
+        formData.append('image', file);
+
+        try {
+            const res = await axios.put(`${apiUrl}/books/update/${bookid}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }, { withCredentials: true });
+            setBookData((prev) => ({...prev, image: res.data.user.image}));
+            setBookImage(res.data.user.image);
+        } catch (err) {
+            alert("이미지 가져오는데에 실패했습니다.");
             console.log(err);
         }
     }
@@ -65,7 +87,7 @@ const BookUpdate = ({ setOpen, bookid }) => {
         const { id, value } = e.target;
         setBookData((prev) => ({
             ...prev,
-            [id] : value
+            [id]: value
         }));
     }
 
@@ -88,7 +110,9 @@ const BookUpdate = ({ setOpen, bookid }) => {
                 ) : (
                     <div className="bu-center">
                         <div className='bu-left'>
-                            <label>책이미지</label><img src={bookData.image}></img><div><input type="file"></input></div>
+                            <label>책이미지</label>
+                            <img src={`${process.env.REACT_APP_API_IMAGE_URL}${bookImage}`}></img>
+                            <div><input type="file" onChange={ImageChange}></input></div>
                         </div>
                         <div className='bu-right'>
                             <div><label for='title'>제목</label><input type="text" id="title" value={bookData.title} onChange={handleChange}></input></div>
@@ -99,7 +123,7 @@ const BookUpdate = ({ setOpen, bookid }) => {
                             <div><label for='own'>소장처</label><input type="text" id="own" value="모블도서관"></input></div>
                             <div><label for='location'>도서위치</label><input type="text" id="location" value={bookData.location} onChange={handleChange}></input></div>
                             <div><label for='availability'>대출상태</label>
-                            <button id="availability" onClick={availabilityClick}>{(bookData.availability === true) ? '대출가능' : '대출중'}</button>
+                                <button id="availability" onClick={availabilityClick}>{(bookData.availability === true) ? '대출가능' : '대출중'}</button>
                             </div>
                             <div><label for='page'>페이지수</label><input type="text" id="page" value={bookData.page} onChange={handleChange}></input></div>
                             <div><label for='description'>책소개</label><input type="text" id="description" value={bookData.description} onChange={handleChange}></input></div>
